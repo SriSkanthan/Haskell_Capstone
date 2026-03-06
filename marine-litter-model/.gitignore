@@ -1,0 +1,28 @@
+# GHC build artifacts
+build/
+*.o
+*.hi
+*.dyn_o
+*.dyn_hi
+
+# Compiled executables
+*.exe
+marine_sim
+
+# GHC profiling
+*.prof
+*.hp
+*.eventlog
+
+# Distribution / cabal
+dist/
+dist-newstyle/
+.cabal-sandbox/
+cabal.sandbox.config
+
+# Stack
+.stack-work/
+
+# OS
+.DS_Store
+Thumbs.db
