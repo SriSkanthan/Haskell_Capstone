@@ -1,6 +1,6 @@
 -- Main.hs
--- Entry point for the Marine Litter Accumulation Dynamics simulation
--- Uses functional fold operations to model sequential environmental events.
+-- Entry point for the Waste Accumulation Dynamics simulation
+-- Models biodegradable and non-biodegradable waste using functional fold operations.
 
 module Main where
 
@@ -8,28 +8,33 @@ import Types
 import Events
 import Simulation
 
--- | A sample sequence of environmental events representing daily processes
---   in an estuarine region. These cover all five event types defined in Types.hs.
+-- | A sample sequence of waste events representing typical daily waste generation
+--   and removal activities. Uses the four event types:
+--     BiodegradableWastes    - food, paper, organic material added
+--     NonBiodegradableWastes - plastics, glass, metals added
+--     Cleanup                - removal by organised cleanup operations
+--     Degradation            - removal by natural biodegradation
 sampleEvents :: [Event]
 sampleEvents =
-  [ RiverInput  120.5   -- Day 1: River carries in 120.5 kg of litter
-  , OceanInput  85.3    -- Day 2: Ocean tide brings in 85.3 kg
-  , HumanInput  45.0    -- Day 3: Coastal human activity adds 45.0 kg
-  , Cleanup     60.0    -- Day 4: Cleanup operation removes 60.0 kg
-  , RiverInput  200.0   -- Day 5: Heavy rainfall, river input surges
-  , Degradation 30.2    -- Day 6: Natural degradation reduces litter by 30.2 kg
-  , OceanInput  110.7   -- Day 7: Storm-driven ocean tide adds 110.7 kg
-  , Cleanup     150.0   -- Day 8: Large-scale cleanup removes 150.0 kg
-  , HumanInput  22.5    -- Day 9: Weekend coastal activity adds litter
-  , Degradation 18.0    -- Day 10: Ongoing natural degradation
+  [ BiodegradableWastes    80.0    -- Day 1 : Food & organic waste deposited (80 kg)
+  , NonBiodegradableWastes 120.5   -- Day 2 : Plastic bottles and bags dumped (120.5 kg)
+  , BiodegradableWastes    55.0    -- Day 3 : Paper and cardboard waste added (55 kg)
+  , Degradation            30.0    -- Day 4 : Natural biodegradation reduces waste (30 kg)
+  , NonBiodegradableWastes 95.0    -- Day 5 : Glass and metal debris added (95 kg)
+  , Cleanup                60.0    -- Day 6 : Cleanup drive removes waste (60 kg)
+  , BiodegradableWastes    40.0    -- Day 7 : Weekend organic waste surge (40 kg)
+  , NonBiodegradableWastes 70.0    -- Day 8 : Industrial plastic waste deposited (70 kg)
+  , Degradation            25.0    -- Day 9 : Continued natural degradation (25 kg)
+  , Cleanup                110.0   -- Day 10: Large-scale cleanup operation (110 kg)
   ]
 
 main :: IO ()
 main = do
   putStrLn "=================================================="
-  putStrLn " Marine Litter Accumulation Dynamics Simulator"
-  putStrLn " Modeled via Functional Fold Operations (Haskell)"
-  putStrLn "=================================================="
+  putStrLn " Waste Accumulation Dynamics Simulator"
+  putStrLn " Biodegradable vs Non-Biodegradable Waste"
+  putStrLn " Modelled via Functional Fold Operations (Haskell)"
+  putStrLn "==================================================\n"
 
   -- Run the verbose simulation (step-by-step output)
   finalState <- runSimulationVerbose sampleEvents
