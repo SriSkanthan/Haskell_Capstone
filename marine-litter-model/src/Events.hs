@@ -8,7 +8,7 @@ import Types
 -- | Applies a single Event to the current LitterState and returns the updated state.
 --   This is the core state-transition function used in the fold operation.
 applyEvent :: LitterState -> Event -> LitterState
-applyEvent state event =
+applyEvent state event =  
   case event of
     BiodegradableWastes    amt -> addBioWaste    state amt
     NonBiodegradableWastes amt -> addNonBioWaste state amt
