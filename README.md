@@ -81,8 +81,8 @@ The key concept used is the **fold operation**, which allows us to apply a state
 
 Environmental processes are represented as events such as:
 
-- `RiverInput`
-- `OceanInput`
+- `BiodegradableWastes`
+- `NonBiodegradableWastes`
 - `Cleanup`
 - `Degradation`
 
@@ -92,19 +92,24 @@ Example event representation:
 
 ```haskell
 data Event
-  = RiverInput Double
-  | OceanInput Double
-  | Cleanup Double
-  | Degradation Double
+  = BiodegradableWastes    Double
+  | NonBiodegradableWastes Double
+  | Cleanup                Double
+  | Degradation            Double
 ```
 
-### Dataset Requirement
+## Dataset
 
-This project does not require large datasets.
+The dataset is a synthetic fabrication based on the mass-balance principles of Jalón-Rojas et al. (2024) and the real-world extraction data from The Ocean Cleanup's 2026 Interceptor logs. Litter composition ratios were informed by Brites et al. (2024), assuming a land-based input model where biodegradable mass typically doubles that of non-biodegradable mass in urban estuarine systems.
 
-The objective is to demonstrate functional modeling using fold operations, so small synthetic datasets or manually defined event sequences are sufficient.
+The dataset (`data/sample_events.txt`) contains 30 daily observations with the following fields:
 
-### Example input may simply be a list of events representing daily environmental processes.
+- `BiodegradableWastes` — food, paper, and organic material (kg)
+- `NonBiodegradableWastes` — plastics, glass, and metals (kg)
+- `Cleanup` — waste removed by organised cleanup operations (kg)
+- `Degradation` — waste reduced by natural biodegradation (kg)
+
+---
 
 ### Possible Extensions 
 
